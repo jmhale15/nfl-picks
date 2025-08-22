@@ -1,11 +1,11 @@
 {
-  "player": "jeff",
+  "player": "will",
   "week": 1,
   "picks": {
     "KC_BAL_2025-09-05 20:20": {
       "spread": "Kansas City",
-      "total": "over"
+      "total": "under"
     }
   },
-  "saved_at": "2025-08-22T17:25:59.565Z"
+  "saved_at": "2025-08-22T17:43:47.837Z"
 }

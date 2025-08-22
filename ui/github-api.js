@@ -93,18 +93,24 @@ class GitHubAPI {
         };
 
         try {
-            // Try to get existing file to get SHA for update
-            const existing = await this.getFile(filePath);
-            const sha = existing ? existing.sha : null;
+            // Always try to get existing file first to get SHA
+            let sha = null;
+            try {
+                const existing = await this.getFile(filePath);
+                sha = existing ? existing.sha : null;
+            } catch (error) {
+                // File doesn't exist yet, that's fine
+                console.log('File does not exist yet, creating new file');
+            }
             
-            await this.saveFile(
+            const result = await this.saveFile(
                 filePath, 
                 picksData, 
                 `Update ${player}'s picks for Week ${week}`,
                 sha
             );
             
-            return { success: true };
+            return { success: true, result: result };
         } catch (error) {
             throw new Error(`Failed to save picks: ${error.message}`);
         }

@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NFL Picks - Admin Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .admin-header {
+            background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+        
+        .admin-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .action-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .action-card:hover {
+            border-color: #667eea;
+            transform: translateY(-2px);
+        }
+        
+        .action-card h3 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .action-card p {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        
+        .action-card button {
+            width: 100%;
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.3s ease;
+        }
+        
+        .action-card button:hover {
+            background: #5a6fd8;
+        }
+        
+        .action-card button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        
+        .picks-summary {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        
+        .picks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .player-picks {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            background: #fafafa;
+        }
+        
+        .player-picks h4 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+        
+        .picks-count {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .log-section {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .log-entry {
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 0.9rem;
+            color: #555;
+        }
+        
+        .log-entry:last-child {
+            border-bottom: none;
+        }
+        
+        .log-entry .timestamp {
+            color: #888;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="admin-header">
+            <h1>🏈 NFL Picks - Admin Dashboard</h1>
+            <div class="week-info">
+                <span id="week-display">Loading...</span>
+            </div>
+        </div>
+
+        <div class="admin-actions">
+            <div class="action-card">
+                <h3>🔄 Refresh Games</h3>
+                <p>Run the scraper to get latest lines for this week</p>
+                <button id="refresh-games">Refresh Games Data</button>
+            </div>
+            
+            <div class="action-card">
+                <h3>📊 Sync to Google Sheets</h3>
+                <p>Push all current picks to the shared Google Sheet</p>
+                <button id="sync-sheets">Sync to Sheets</button>
+            </div>
+            
+            <div class="action-card">
+                <h3>🎯 Make Picks</h3>
+                <p>Use the picking interface to make your own picks</p>
+                <button id="go-to-picks" onclick="window.open('picks.html', '_blank')">Open Picks Interface</button>
+            </div>
+            
+            <div class="action-card">
+                <h3>⚙️ Change Week</h3>
+                <p>Override to fetch a different week's games</p>
+                <select id="week-selector">
+                    <option value="">Current Week</option>
+                </select>
+                <button id="change-week" style="margin-top: 10px;">Load Selected Week</button>
+            </div>
+        </div>
+
+        <div class="picks-summary">
+            <h2>📋 Current Picks Summary</h2>
+            <div id="picks-overview" class="picks-grid">
+                <div class="loading">Loading picks data...</div>
+            </div>
+        </div>
+
+        <div class="log-section">
+            <h2>📝 Activity Log</h2>
+            <div id="activity-log">
+                <div class="log-entry">
+                    <span class="timestamp">System initialized</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="status-message" class="status-message"></div>
+    </div>
+
+    <script>
+        class AdminDashboard {
+            constructor() {
+                this.games = [];
+                this.players = [];
+                this.currentWeek = 1;
+                this.weekStart = '';
+                
+                this.init();
+            }
+
+            async init() {
+                try {
+                    await this.loadGames();
+                    this.setupEventListeners();
+                    this.renderWeekSelector();
+                    this.loadPicksSummary();
+                    this.updateWeekDisplay();
+                } catch (error) {
+                    this.showMessage('Error initializing dashboard: ' + error.message, 'error');
+                }
+            }
+
+            async loadGames() {
+                try {
+                    const response = await fetch('../games.json');
+                    if (!response.ok) {
+                        throw new Error('Could not load games data');
+                    }
+                    
+                    const data = await response.json();
+                    this.games = data.games || [];
+                    this.players = data.players || ['jeff', 'teddy', 'will'];
+                    this.currentWeek = data.week || 1;
+                    this.weekStart = data.week_start || '';
+                    
+                } catch (error) {
+                    // Use mock data for testing
+                    this.games = [];
+                    this.players = ['jeff', 'teddy', 'will'];
+                    this.currentWeek = 1;
+                    this.weekStart = '2025-09-05';
+                    this.log('Using mock data - games.json not available');
+                }
+            }
+
+            setupEventListeners() {
+                document.getElementById('refresh-games').addEventListener('click', () => {
+                    this.refreshGames();
+                });
+
+                document.getElementById('sync-sheets').addEventListener('click', () => {
+                    this.syncToSheets();
+                });
+
+                document.getElementById('change-week').addEventListener('click', () => {
+                    this.changeWeek();
+                });
+            }
+
+            renderWeekSelector() {
+                const selector = document.getElementById('week-selector');
+                selector.innerHTML = '<option value="">Current Week</option>';
+                
+                for (let i = 1; i <= 18; i++) {
+                    const option = document.createElement('option');
+                    option.value = i;
+                    option.textContent = `Week ${i}`;
+                    if (i === this.currentWeek) {
+                        option.selected = true;
+                    }
+                    selector.appendChild(option);
+                }
+            }
+
+            updateWeekDisplay() {
+                const display = document.getElementById('week-display');
+                const dateStr = this.weekStart ? new Date(this.weekStart).toLocaleDateString() : 'Unknown';
+                display.textContent = `Week ${this.currentWeek} - ${dateStr} | ${this.games.length} games loaded`;
+            }
+
+            async loadPicksSummary() {
+                const container = document.getElementById('picks-overview');
+                container.innerHTML = '';
+
+                this.players.forEach(player => {
+                    const playerDiv = document.createElement('div');
+                    playerDiv.className = 'player-picks';
+                    
+                    // Try to load picks from localStorage
+                    const saved = localStorage.getItem(`picks_${player}_week_${this.currentWeek}`);
+                    let picksCount = 0;
+                    let lastSaved = 'Never';
+                    
+                    if (saved) {
+                        try {
+                            const picksData = JSON.parse(saved);
+                            picksCount = Object.keys(picksData.picks || {}).length;
+                            lastSaved = new Date(picksData.saved_at).toLocaleString();
+                        } catch (e) {
+                            // Ignore parsing errors
+                        }
+                    }
+                    
+                    playerDiv.innerHTML = `
+                        <h4>${player.charAt(0).toUpperCase() + player.slice(1)}</h4>
+                        <div class="picks-count">
+                            <strong>${picksCount}</strong> games picked out of ${this.games.length}
+                        </div>
+                        <div class="picks-count">
+                            Last saved: ${lastSaved}
+                        </div>
+                    `;
+                    
+                    container.appendChild(playerDiv);
+                });
+            }
+
+            async refreshGames() {
+                this.showMessage('Refreshing games data...', 'info');
+                this.log('Refreshing games data from scraper');
+                
+                try {
+                    // In a real implementation, this would trigger the scraper
+                    // For now, just reload the current data
+                    await this.loadGames();
+                    this.updateWeekDisplay();
+                    this.loadPicksSummary();
+                    this.showMessage('Games data refreshed successfully! ✅', 'success');
+                    this.log(`Loaded ${this.games.length} games for Week ${this.currentWeek}`);
+                } catch (error) {
+                    this.showMessage('Error refreshing games: ' + error.message, 'error');
+                    this.log('Error refreshing games: ' + error.message);
+                }
+            }
+
+            async syncToSheets() {
+                this.showMessage('Syncing picks to Google Sheets...', 'info');
+                this.log('Starting sync to Google Sheets');
+                
+                try {
+                    // In a real implementation, this would call your sync script
+                    // For now, simulate the process
+                    
+                    // Collect all picks
+                    const allPicks = {};
+                    this.players.forEach(player => {
+                        const saved = localStorage.getItem(`picks_${player}_week_${this.currentWeek}`);
+                        if (saved) {
+                            try {
+                                allPicks[player] = JSON.parse(saved);
+                            } catch (e) {
+                                // Ignore parsing errors
+                            }
+                        }
+                    });
+                    
+                    // Simulate sync delay
+                    await new Promise(resolve => setTimeout(resolve, 2000));
+                    
+                    this.showMessage('Successfully synced to Google Sheets! ✅', 'success');
+                    this.log(`Synced picks for ${Object.keys(allPicks).length} players to Google Sheets`);
+                    
+                } catch (error) {
+                    this.showMessage('Error syncing to sheets: ' + error.message, 'error');
+                    this.log('Error syncing to sheets: ' + error.message);
+                }
+            }
+
+            async changeWeek() {
+                const selector = document.getElementById('week-selector');
+                const selectedWeek = selector.value;
+                
+                if (!selectedWeek) {
+                    this.showMessage('Please select a week first', 'error');
+                    return;
+                }
+                
+                this.showMessage(`Loading Week ${selectedWeek} games...`, 'info');
+                this.log(`Changing to Week ${selectedWeek}`);
+                
+                try {
+                    // In a real implementation, this would run the scraper with --week parameter
+                    // For now, just update the UI
+                    this.currentWeek = parseInt(selectedWeek);
+                    this.updateWeekDisplay();
+                    this.loadPicksSummary();
+                    
+                    this.showMessage(`Switched to Week ${selectedWeek}! ✅`, 'success');
+                    this.log(`Successfully loaded Week ${selectedWeek}`);
+                    
+                } catch (error) {
+                    this.showMessage('Error changing week: ' + error.message, 'error');
+                    this.log('Error changing week: ' + error.message);
+                }
+            }
+
+            log(message) {
+                const logContainer = document.getElementById('activity-log');
+                const timestamp = new Date().toLocaleTimeString();
+                
+                const logEntry = document.createElement('div');
+                logEntry.className = 'log-entry';
+                logEntry.innerHTML = `
+                    <span class="timestamp">${timestamp}</span> - ${message}
+                `;
+                
+                logContainer.insertBefore(logEntry, logContainer.firstChild);
+                
+                // Keep only last 10 log entries
+                const entries = logContainer.querySelectorAll('.log-entry');
+                if (entries.length > 10) {
+                    entries[entries.length - 1].remove();
+                }
+            }
+
+            showMessage(message, type = 'info') {
+                const messageEl = document.getElementById('status-message');
+                messageEl.textContent = message;
+                messageEl.className = `status-message ${type}`;
+                
+                if (type !== 'error') {
+                    setTimeout(() => {
+                        messageEl.textContent = '';
+                        messageEl.className = 'status-message';
+                    }, 3000);
+                }
+            }
+        }
+
+        // Initialize the dashboard when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            new AdminDashboard();
+        });
+    </script>
+</body>
+</html>

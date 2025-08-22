@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NFL Picks</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏈 NFL Picks</h1>
+            <div class="week-info">
+                <span id="week-display">Loading...</span>
+            </div>
+        </header>
+
+        <div class="player-selection">
+            <label for="player-select">Who are you?</label>
+            <select id="player-select">
+                <option value="">Select your name...</option>
+            </select>
+        </div>
+
+        <div id="games-container" class="games-container">
+            <div class="loading">Loading games...</div>
+        </div>
+
+        <div class="actions">
+            <button id="save-picks" disabled>Save My Picks</button>
+            <button id="load-picks" disabled>Load My Previous Picks</button>
+        </div>
+
+        <div id="status-message" class="status-message"></div>
+    </div>
+
+    <script src="github-api.js"></script>
+    <script src="picks.js"></script>
+</body>
+</html>

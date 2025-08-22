@@ -181,6 +181,7 @@
         <div id="status-message" class="status-message"></div>
     </div>
 
+    <script src="github-api.js"></script>
     <script>
         class AdminDashboard {
             constructor() {
@@ -188,6 +189,7 @@
                 this.players = [];
                 this.currentWeek = 1;
                 this.weekStart = '';
+                this.github = new GitHubAPI();
                 
                 this.init();
             }
@@ -300,20 +302,36 @@
             }
 
             async refreshGames() {
-                this.showMessage('Refreshing games data...', 'info');
-                this.log('Refreshing games data from scraper');
+                this.showMessage('Running scraper to get latest games...', 'info');
+                this.log('Starting scraper to fetch latest NFL games');
                 
                 try {
-                    // In a real implementation, this would trigger the scraper
-                    // For now, just reload the current data
-                    await this.loadGames();
-                    this.updateWeekDisplay();
-                    this.loadPicksSummary();
-                    this.showMessage('Games data refreshed successfully! ✅', 'success');
-                    this.log(`Loaded ${this.games.length} games for Week ${this.currentWeek}`);
+                    const response = await fetch('/.netlify/functions/run-scraper', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        }
+                    });
+                    
+                    const result = await response.json();
+                    
+                    if (result.success) {
+                        this.showMessage('Scraper completed successfully! 🎉', 'success');
+                        this.log('Scraper output: ' + result.output);
+                        
+                        // Reload games data
+                        await this.loadGames();
+                        this.updateWeekDisplay();
+                        this.loadPicksSummary();
+                        
+                        this.log(`Successfully updated games data`);
+                    } else {
+                        this.showMessage('Scraper failed: ' + result.error, 'error');
+                        this.log('Scraper error: ' + result.error);
+                    }
                 } catch (error) {
-                    this.showMessage('Error refreshing games: ' + error.message, 'error');
-                    this.log('Error refreshing games: ' + error.message);
+                    this.showMessage('Error running scraper: ' + error.message, 'error');
+                    this.log('Network error running scraper: ' + error.message);
                 }
             }
 
@@ -322,31 +340,30 @@
                 this.log('Starting sync to Google Sheets');
                 
                 try {
-                    // In a real implementation, this would call your sync script
-                    // For now, simulate the process
-                    
-                    // Collect all picks
-                    const allPicks = {};
-                    this.players.forEach(player => {
-                        const saved = localStorage.getItem(`picks_${player}_week_${this.currentWeek}`);
-                        if (saved) {
-                            try {
-                                allPicks[player] = JSON.parse(saved);
-                            } catch (e) {
-                                // Ignore parsing errors
-                            }
+                    const response = await fetch('/.netlify/functions/sync-sheets', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
                         }
                     });
                     
-                    // Simulate sync delay
-                    await new Promise(resolve => setTimeout(resolve, 2000));
+                    const result = await response.json();
                     
-                    this.showMessage('Successfully synced to Google Sheets! ✅', 'success');
-                    this.log(`Synced picks for ${Object.keys(allPicks).length} players to Google Sheets`);
-                    
+                    if (result.success) {
+                        this.showMessage('Successfully synced to Google Sheets! 🎉', 'success');
+                        this.log('Sync output: ' + result.output);
+                        
+                        // Update picks summary after sync
+                        this.loadPicksSummary();
+                        
+                        this.log('Google Sheets sync completed successfully');
+                    } else {
+                        this.showMessage('Sync failed: ' + result.error, 'error');
+                        this.log('Sync error: ' + result.error);
+                    }
                 } catch (error) {
                     this.showMessage('Error syncing to sheets: ' + error.message, 'error');
-                    this.log('Error syncing to sheets: ' + error.message);
+                    this.log('Network error syncing to sheets: ' + error.message);
                 }
             }
 

@@ -1,21 +1,53 @@
 class GitHubAPI {
     constructor() {
-        // Replace these with your actual values
-        this.owner = 'jmhale15';  // Replace with your GitHub username
-        this.repo = 'nfl-picks';  // Your repo name
+        this.owner = null;
+        this.repo = null;
         this.token = null;
         
         this.baseURL = 'https://api.github.com';
         
-        // Try to get token from localStorage (for testing)
-        // In production, this would be handled more securely
-        this.token = localStorage.getItem('github_token');
+        // Initialize configuration
+        this.initConfig();
     }
 
-    // Method to set token for testing
+    async initConfig() {
+        try {
+            // Try to get config from Netlify function (production)
+            const response = await fetch('/.netlify/functions/github-config');
+            if (response.ok) {
+                const config = await response.json();
+                this.token = config.token;
+                this.owner = config.owner;
+                this.repo = config.repo;
+                console.log('✅ GitHub config loaded from Netlify');
+                return;
+            }
+        } catch (error) {
+            console.log('Netlify function not available, trying localStorage...');
+        }
+
+        // Fallback to localStorage for local testing
+        this.token = localStorage.getItem('github_token');
+        this.owner = 'jmhale15';
+        this.repo = 'nfl-picks';
+        
+        if (this.token) {
+            console.log('✅ GitHub config loaded from localStorage (local testing)');
+        } else {
+            console.log('⚠️ No GitHub token found. Set via setToken() for local testing.');
+        }
+    }
+
+    // Method to set token for local testing
     setToken(token) {
         this.token = token;
         localStorage.setItem('github_token', token);
+        console.log('✅ GitHub token set for local testing');
+    }
+
+    // Check if GitHub is ready
+    isReady() {
+        return this.token && this.owner && this.repo;
     }
 
     async makeRequest(endpoint, options = {}) {

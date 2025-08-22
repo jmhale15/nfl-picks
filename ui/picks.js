@@ -11,6 +11,9 @@ class NFLPicks {
 
     async init() {
         try {
+            // Wait for GitHub config to load
+            await this.github.initConfig();
+            
             await this.loadGames();
             this.setupEventListeners();
             this.renderPlayerSelect();
@@ -22,8 +25,8 @@ class NFLPicks {
 
     async loadGames() {
         try {
-            // Try to load from GitHub first
-            if (this.github.token) {
+            // Try to load from GitHub first (if available)
+            if (this.github.isReady()) {
                 const data = await this.github.loadGames();
                 if (data) {
                     this.games = data.games || [];

@@ -208,6 +208,19 @@
 
             async loadGames() {
                 try {
+                    // Try to load from GitHub first (if available)
+                    if (this.github.isReady()) {
+                        const data = await this.github.loadGames();
+                        if (data) {
+                            this.games = data.games || [];
+                            this.players = data.players || ['jeff', 'teddy', 'will'];
+                            this.currentWeek = data.week || 1;
+                            this.weekStart = data.week_start || '';
+                            return;
+                        }
+                    }
+                    
+                    // Fallback to local fetch
                     const response = await fetch('../games.json');
                     if (!response.ok) {
                         throw new Error('Could not load games data');
@@ -221,6 +234,7 @@
                     
                 } catch (error) {
                     // Use mock data for testing
+                    console.log('Loading mock data for admin dashboard...');
                     this.games = [];
                     this.players = ['jeff', 'teddy', 'will'];
                     this.currentWeek = 1;
@@ -268,23 +282,32 @@
                 const container = document.getElementById('picks-overview');
                 container.innerHTML = '';
 
-                this.players.forEach(player => {
+                for (const player of this.players) {
                     const playerDiv = document.createElement('div');
                     playerDiv.className = 'player-picks';
                     
-                    // Try to load picks from localStorage
-                    const saved = localStorage.getItem(`picks_${player}_week_${this.currentWeek}`);
                     let picksCount = 0;
                     let lastSaved = 'Never';
                     
-                    if (saved) {
-                        try {
-                            const picksData = JSON.parse(saved);
-                            picksCount = Object.keys(picksData.picks || {}).length;
-                            lastSaved = new Date(picksData.saved_at).toLocaleString();
-                        } catch (e) {
-                            // Ignore parsing errors
+                    try {
+                        // Try to load from GitHub first
+                        if (this.github.isReady()) {
+                            const picksData = await this.github.loadPicks(player, this.currentWeek);
+                            if (picksData) {
+                                picksCount = Object.keys(picksData.picks || {}).length;
+                                lastSaved = new Date(picksData.saved_at).toLocaleString();
+                            }
+                        } else {
+                            // Fallback to localStorage
+                            const saved = localStorage.getItem(`picks_${player}_week_${this.currentWeek}`);
+                            if (saved) {
+                                const picksData = JSON.parse(saved);
+                                picksCount = Object.keys(picksData.picks || {}).length;
+                                lastSaved = new Date(picksData.saved_at).toLocaleString();
+                            }
                         }
+                    } catch (error) {
+                        console.log(`Could not load picks for ${player}:`, error.message);
                     }
                     
                     playerDiv.innerHTML = `
@@ -298,7 +321,7 @@
                     `;
                     
                     container.appendChild(playerDiv);
-                });
+                }
             }
 
             async refreshGames() {

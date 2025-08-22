@@ -129,6 +129,18 @@ class NFLPicks {
         const container = document.getElementById('games-container');
         
         if (this.games.length === 0) {
+            // If no games, load mock data for testing
+            console.log('No games found, loading mock data for testing...');
+            this.loadMockData();
+            
+            // After loading mock data, render those games
+            if (this.games.length > 0) {
+                container.innerHTML = this.games.map(game => this.renderGameCard(game)).join('');
+                this.attachPickListeners();
+                return;
+            }
+            
+            // If still no games (shouldn't happen), show the no games message
             container.innerHTML = `
                 <div class="loading">
                     <p>No games available yet for this week.</p>

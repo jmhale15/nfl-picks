@@ -4,12 +4,12 @@
   "picks": {
     "KC_BAL_2025-09-05 20:20": {
       "spread": "Kansas City",
-      "total": "under"
+      "total": "over"
     },
     "BUF_LAR_2025-09-08 13:00": {
-      "spread": "Los Angeles",
-      "total": "under"
+      "spread": "Buffalo",
+      "total": "over"
     }
   },
-  "saved_at": "2025-08-22T19:05:02.557Z"
+  "saved_at": "2025-08-23T15:11:48.458Z"
 }

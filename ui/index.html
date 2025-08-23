@@ -136,14 +136,14 @@
         <div class="admin-actions">
             <div class="action-card">
                 <h3>🔄 Refresh Games</h3>
-                <p>Run the scraper to get latest lines for this week</p>
-                <button id="refresh-games">Refresh Games Data</button>
+                <p>Get latest NFL lines and spreads</p>
+                <button id="refresh-games">Show Command</button>
             </div>
             
             <div class="action-card">
                 <h3>📊 Sync to Google Sheets</h3>
-                <p>Push all current picks to the shared Google Sheet</p>
-                <button id="sync-sheets">Sync to Sheets</button>
+                <p>Push all current picks to your shared Google Sheet</p>
+                <button id="sync-sheets">Show Command</button>
             </div>
             
             <div class="action-card">
@@ -325,69 +325,23 @@
             }
 
             async refreshGames() {
-                this.showMessage('Running scraper to get latest games...', 'info');
-                this.log('Starting scraper to fetch latest NFL games');
+                this.showMessage('To refresh games, run locally: python3 scrape.py', 'info');
+                this.log('Admin instruction: Run "python3 scrape.py" in your local terminal');
                 
-                try {
-                    const response = await fetch('/.netlify/functions/run-scraper', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        }
-                    });
-                    
-                    const result = await response.json();
-                    
-                    if (result.success) {
-                        this.showMessage('Scraper completed successfully! 🎉', 'success');
-                        this.log('Scraper output: ' + result.output);
-                        
-                        // Reload games data
-                        await this.loadGames();
-                        this.updateWeekDisplay();
-                        this.loadPicksSummary();
-                        
-                        this.log(`Successfully updated games data`);
-                    } else {
-                        this.showMessage('Scraper failed: ' + result.error, 'error');
-                        this.log('Scraper error: ' + result.error);
-                    }
-                } catch (error) {
-                    this.showMessage('Error running scraper: ' + error.message, 'error');
-                    this.log('Network error running scraper: ' + error.message);
-                }
+                // Show helpful info
+                setTimeout(() => {
+                    this.showMessage('After running scraper locally, refresh this page to see updated data', 'info');
+                }, 3000);
             }
 
             async syncToSheets() {
-                this.showMessage('Syncing picks to Google Sheets...', 'info');
-                this.log('Starting sync to Google Sheets');
+                this.showMessage('To sync picks to Google Sheets, run locally: python3 sync-to-sheets.py', 'info');
+                this.log('Admin instruction: Run "python3 sync-to-sheets.py" in your local terminal');
                 
-                try {
-                    const response = await fetch('/.netlify/functions/sync-sheets', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        }
-                    });
-                    
-                    const result = await response.json();
-                    
-                    if (result.success) {
-                        this.showMessage('Successfully synced to Google Sheets! 🎉', 'success');
-                        this.log('Sync output: ' + result.output);
-                        
-                        // Update picks summary after sync
-                        this.loadPicksSummary();
-                        
-                        this.log('Google Sheets sync completed successfully');
-                    } else {
-                        this.showMessage('Sync failed: ' + result.error, 'error');
-                        this.log('Sync error: ' + result.error);
-                    }
-                } catch (error) {
-                    this.showMessage('Error syncing to sheets: ' + error.message, 'error');
-                    this.log('Network error syncing to sheets: ' + error.message);
-                }
+                // Show helpful info about what the sync does
+                setTimeout(() => {
+                    this.showMessage('This will read all GitHub picks and push them to your Google Sheet', 'info');
+                }, 3000);
             }
 
             async changeWeek() {

@@ -147,18 +147,15 @@
             </div>
             
             <div class="action-card">
-                <h3>🎯 Make Picks</h3>
-                <p>Use the picking interface to make your own picks</p>
-                <button id="go-to-picks" onclick="window.open('picks.html', '_blank')">Open Picks Interface</button>
+                <h3>🏆 Update Scores</h3>
+                <p>Fetch final scores from ESPN and update Google Sheet</p>
+                <button id="update-scores">Show Command</button>
             </div>
             
             <div class="action-card">
-                <h3>⚙️ Change Week</h3>
-                <p>Override to fetch a different week's games</p>
-                <select id="week-selector">
-                    <option value="">Current Week</option>
-                </select>
-                <button id="change-week" style="margin-top: 10px;">Load Selected Week</button>
+                <h3>🎯 Make Picks</h3>
+                <p>Use the picking interface to make your own picks</p>
+                <button id="go-to-picks" onclick="window.open('picks.html', '_blank')">Open Picks Interface</button>
             </div>
         </div>
 
@@ -252,24 +249,14 @@
                     this.syncToSheets();
                 });
 
-                document.getElementById('change-week').addEventListener('click', () => {
-                    this.changeWeek();
+                document.getElementById('update-scores').addEventListener('click', () => {
+                    this.updateScores();
                 });
             }
 
             renderWeekSelector() {
-                const selector = document.getElementById('week-selector');
-                selector.innerHTML = '<option value="">Current Week</option>';
-                
-                for (let i = 1; i <= 18; i++) {
-                    const option = document.createElement('option');
-                    option.value = i;
-                    option.textContent = `Week ${i}`;
-                    if (i === this.currentWeek) {
-                        option.selected = true;
-                    }
-                    selector.appendChild(option);
-                }
+                // Remove week selector functionality since we're using shell scripts
+                // Keep this function for compatibility but make it a no-op
             }
 
             updateWeekDisplay() {
@@ -325,18 +312,18 @@
             }
 
             async refreshGames() {
-                this.showMessage('To refresh games, run locally: python3 scrape.py', 'info');
-                this.log('Admin instruction: Run "python3 scrape.py" in your local terminal');
+                this.showMessage('To refresh games, run locally: ./setup.sh', 'info');
+                this.log('Admin instruction: Run "./setup.sh" in your project directory');
                 
                 // Show helpful info
                 setTimeout(() => {
-                    this.showMessage('After running scraper locally, refresh this page to see updated data', 'info');
+                    this.showMessage('This will get latest NFL games and lines automatically', 'info');
                 }, 3000);
             }
 
             async syncToSheets() {
-                this.showMessage('To sync picks to Google Sheets, run locally: python3 sync-to-sheets.py', 'info');
-                this.log('Admin instruction: Run "python3 sync-to-sheets.py" in your local terminal');
+                this.showMessage('To sync picks to Google Sheets, run locally: ./sync.sh', 'info');
+                this.log('Admin instruction: Run "./sync.sh" in your project directory');
                 
                 // Show helpful info about what the sync does
                 setTimeout(() => {
@@ -344,32 +331,18 @@
                 }, 3000);
             }
 
-            async changeWeek() {
-                const selector = document.getElementById('week-selector');
-                const selectedWeek = selector.value;
+            async updateScores() {
+                this.showMessage('To update game scores, run locally: ./score.sh', 'info');
+                this.log('Admin instruction: Run "./score.sh" in your project directory');
                 
-                if (!selectedWeek) {
-                    this.showMessage('Please select a week first', 'error');
-                    return;
-                }
+                // Show helpful info about what the score update does
+                setTimeout(() => {
+                    this.showMessage('This will fetch final scores from ESPN and update your Google Sheet', 'info');
+                }, 3000);
                 
-                this.showMessage(`Loading Week ${selectedWeek} games...`, 'info');
-                this.log(`Changing to Week ${selectedWeek}`);
-                
-                try {
-                    // In a real implementation, this would run the scraper with --week parameter
-                    // For now, just update the UI
-                    this.currentWeek = parseInt(selectedWeek);
-                    this.updateWeekDisplay();
-                    this.loadPicksSummary();
-                    
-                    this.showMessage(`Switched to Week ${selectedWeek}! ✅`, 'success');
-                    this.log(`Successfully loaded Week ${selectedWeek}`);
-                    
-                } catch (error) {
-                    this.showMessage('Error changing week: ' + error.message, 'error');
-                    this.log('Error changing week: ' + error.message);
-                }
+                setTimeout(() => {
+                    this.showMessage('For specific weeks, use: ./score.sh --week 5', 'info');
+                }, 6000);
             }
 
             log(message) {

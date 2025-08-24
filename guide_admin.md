@@ -1,7 +1,7 @@
 # NFL Picks System - Admin Guide
 
 ## Overview
-You've built a complete automated NFL picks system! This guide covers how to run and maintain it throughout the season.
+I've built a complete automated NFL picks system. This guide covers how to run and maintain it throughout the season.
 
 ## Weekly Workflow
 
@@ -12,14 +12,14 @@ Run this every week to get the latest NFL games and betting lines:
 # Navigate to your project folder
 cd ~/Documents/gh/nfl-picks
 
-# Activate virtual environment
-source myenv/bin/activate
-
-# Run the scraper
-python3 scrape.py
+# Run the setup script (handles virtual environment automatically)
+./setup.sh
 ```
 
 **What this does:**
+- Creates/activates virtual environment automatically
+- Installs any missing dependencies  
+- Runs `python3 scrape.py`
 - Fetches current week's NFL games from OddsShark
 - Gets betting lines (spreads and over/unders)
 - Saves to `games.json` 
@@ -42,11 +42,11 @@ python3 scrape.py
 After everyone has made their picks:
 
 ```bash
-# Same directory and virtual environment as Step 1
-python3 sync-to-sheets.py
+./sync.sh
 ```
 
 **What this does:**
+- Activates virtual environment automatically
 - Reads all picks from GitHub (`picks/jeff.json`, `picks/teddy.json`, `picks/will.json`)
 - Combines with games data
 - Pushes everything to your Google Sheet
@@ -67,10 +67,43 @@ python3 sync-to-sheets.py
 🎉 Sync completed successfully!
 ```
 
-### Step 4: Score Games (Sunday/Monday)
+### Step 4: Update Game Scores (Sunday/Monday)
+After games are played, automatically fetch final scores:
+
+```bash
+./score.sh
+```
+
+**What this does:**
+- Activates virtual environment automatically
+- Fetches completed NFL game scores from ESPN API
+- Matches team names between ESPN and your Google Sheet
+- Updates "Away Score" and "Home Score" columns automatically
+- Changes "Game Status" to "Final" for completed games
+- Shows summary of games updated
+
+**Expected output:**
+```
+🏈 NFL Score Updater Starting...
+📅 Fetching scores for current week
+✅ Found 12 completed games out of 16 total
+📊 Updating: Kansas City @ Baltimore = 24-17
+📊 Updating: Buffalo @ Los Angeles = 31-14
+✅ Updated 12 games in Google Sheet
+🎉 Score update completed!
+```
+
+**For specific weeks:**
+```bash
+# Update scores for a particular week
+./score.sh --week 5
+```
+
+### Step 5: Calculate Points (Monday)
 - Open your Google Sheet: [NFL Picks 2025](https://docs.google.com/spreadsheets/d/1xpXbCePRXldopPgpVjERMRWLos70MF1nZa2zpNoXdxI/edit)
-- Add final scores to "Away Score" and "Home Score" columns
-- Calculate points manually or with formulas (same as your old process)
+- Review the auto-populated scores for accuracy
+- Calculate points for spread and over/under picks (manually or with formulas)
+- Verify everything looks correct and share results
 
 ## System Maintenance
 
@@ -114,8 +147,12 @@ nfl-picks/
 │   ├── jeff.json
 │   ├── teddy.json
 │   └── will.json
+├── setup.sh               # Get NFL games (./setup.sh)
+├── sync.sh                # Sync picks to Google Sheets (./sync.sh)
+├── score.sh               # Update final scores (./score.sh)
 ├── scrape.py             # Gets NFL games
-├── sync-to-sheets.py     # Pushes to Google Sheet
+├── sync-to-sheets.py     # Pushes picks to Google Sheet
+├── score-games.py        # Fetches final scores from ESPN
 └── ui/                   # Website files
 ```
 
@@ -156,11 +193,19 @@ cat picks/jeff.json | grep -o '"spread"' | wc -l  # Count Jeff's picks
 
 ### Re-syncing Data
 ```bash
-# If you need to re-sync to Google Sheets
-python3 sync-to-sheets.py
+# Re-sync picks to Google Sheets
+./sync.sh
 
-# This is safe to run multiple times
-# It will append new rows, not overwrite
+# Update scores for current week
+./score.sh
+
+# Update scores for specific week
+./score.sh --week 8
+
+# Get fresh games data
+./setup.sh
+
+# All scripts are safe to run multiple times
 ```
 
 ## Success Metrics

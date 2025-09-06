@@ -1,11 +1,188 @@
 {
   "week": 1,
   "week_start": "2025-09-04",
-  "generated_at": "2025-08-23T07:57:35.317721",
+  "generated_at": "2025-09-06T11:04:04.541420",
   "players": [
     "jeff",
     "teddy",
     "will"
   ],
-  "games": []
+  "games": [
+    {
+      "id": "Dallas_Philadelphia_2025-09-04 20:20",
+      "week": 1,
+      "game_date": "2025-09-04 20:20",
+      "away_team": "Dallas",
+      "home_team": "Philadelphia",
+      "away_odds": "8",
+      "home_odds": "-8",
+      "over_under": "47.5",
+      "matchup_link": "https://www.oddsshark.com/nfl/dallas-philadelphia-odds-september-4-2025-2396254"
+    },
+    {
+      "id": "Kansas City_LA Chargers_2025-09-05 20:00",
+      "week": 1,
+      "game_date": "2025-09-05 20:00",
+      "away_team": "Kansas City",
+      "home_team": "LA Chargers",
+      "away_odds": "-3",
+      "home_odds": "3",
+      "over_under": "47.5",
+      "matchup_link": "https://www.oddsshark.com/nfl/kansas-city-los-angeles-odds-september-5-2025-2396524"
+    },
+    {
+      "id": "Arizona_New Orleans_2025-09-07 13:00",
+      "week": 1,
+      "game_date": "2025-09-07 13:00",
+      "away_team": "Arizona",
+      "home_team": "New Orleans",
+      "away_odds": "-6.5",
+      "home_odds": "6.5",
+      "over_under": "43.5",
+      "matchup_link": "https://www.oddsshark.com/nfl/arizona-new-orleans-odds-september-7-2025-2396529"
+    },
+    {
+      "id": "Las Vegas_New England_2025-09-07 13:00",
+      "week": 1,
+      "game_date": "2025-09-07 13:00",
+      "away_team": "Las Vegas",
+      "home_team": "New England",
+      "away_odds": "2.5",
+      "home_odds": "-2.5",
+      "over_under": "44",
+      "matchup_link": "https://www.oddsshark.com/nfl/las-vegas-new-england-odds-september-7-2025-2396534"
+    },
+    {
+      "id": "Pittsburgh_NY Jets_2025-09-07 13:00",
+      "week": 1,
+      "game_date": "2025-09-07 13:00",
+      "away_team": "Pittsburgh",
+      "home_team": "NY Jets",
+      "away_odds": "-3",
+      "home_odds": "3",
+      "over_under": "38",
+      "matchup_link": "https://www.oddsshark.com/nfl/pittsburgh-new-york-odds-september-7-2025-2396539"
+    },
+    {
+      "id": "Tampa Bay_Atlanta_2025-09-07 13:00",
+      "week": 1,
+      "game_date": "2025-09-07 13:00",
+      "away_team": "Tampa Bay",
+      "home_team": "Atlanta",
+      "away_odds": "-1",
+      "home_odds": "1",
+      "over_under": "47",
+      "matchup_link": "https://www.oddsshark.com/nfl/tampa-bay-atlanta-odds-september-7-2025-2396544"
+    },
+    {
+      "id": "Miami_Indianapolis_2025-09-07 13:00",
+      "week": 1,
+      "game_date": "2025-09-07 13:00",
+      "away_team": "Miami",
+      "home_team": "Indianapolis",
+      "away_odds": "1",
+      "home_odds": "-1",
+      "over_under": "46.5",
+      "matchup_link": "https://www.oddsshark.com/nfl/miami-indianapolis-odds-september-7-2025-2396549"
+    },
+    {
+      "id": "NY Giants_Washington_2025-09-07 13:00",
+      "week": 1,
+      "game_date": "2025-09-07 13:00",
+      "away_team": "NY Giants",
+      "home_team": "Washington",
+      "away_odds": "6",
+      "home_odds": "-6",
+      "over_under": "45.5",
+      "matchup_link": "https://www.oddsshark.com/nfl/new-york-washington-odds-september-7-2025-2396554"
+    },
+    {
+      "id": "Carolina_Jacksonville_2025-09-07 13:00",
+      "week": 1,
+      "game_date": "2025-09-07 13:00",
+      "away_team": "Carolina",
+      "home_team": "Jacksonville",
+      "away_odds": "3.5",
+      "home_odds": "-3.5",
+      "over_under": "46.5",
+      "matchup_link": "https://www.oddsshark.com/nfl/carolina-jacksonville-odds-september-7-2025-2396559"
+    },
+    {
+      "id": "Cincinnati_Cleveland_2025-09-07 13:00",
+      "week": 1,
+      "game_date": "2025-09-07 13:00",
+      "away_team": "Cincinnati",
+      "home_team": "Cleveland",
+      "away_odds": "-5",
+      "home_odds": "5",
+      "over_under": "48",
+      "matchup_link": "https://www.oddsshark.com/nfl/cincinnati-cleveland-odds-september-7-2025-2396564"
+    },
+    {
+      "id": "San Francisco_Seattle_2025-09-07 16:05",
+      "week": 1,
+      "game_date": "2025-09-07 16:05",
+      "away_team": "San Francisco",
+      "home_team": "Seattle",
+      "away_odds": "-1.5",
+      "home_odds": "1.5",
+      "over_under": "43.5",
+      "matchup_link": "https://www.oddsshark.com/nfl/san-francisco-seattle-odds-september-7-2025-2396569"
+    },
+    {
+      "id": "Tennessee_Denver_2025-09-07 16:05",
+      "week": 1,
+      "game_date": "2025-09-07 16:05",
+      "away_team": "Tennessee",
+      "home_team": "Denver",
+      "away_odds": "8.5",
+      "home_odds": "-8.5",
+      "over_under": "42.5",
+      "matchup_link": "https://www.oddsshark.com/nfl/tennessee-denver-odds-september-7-2025-2396574"
+    },
+    {
+      "id": "Houston_LA Rams_2025-09-07 16:25",
+      "week": 1,
+      "game_date": "2025-09-07 16:25",
+      "away_team": "Houston",
+      "home_team": "LA Rams",
+      "away_odds": "3",
+      "home_odds": "-3",
+      "over_under": "43.5",
+      "matchup_link": "https://www.oddsshark.com/nfl/houston-los-angeles-odds-september-7-2025-2396579"
+    },
+    {
+      "id": "Detroit_Green Bay_2025-09-07 16:25",
+      "week": 1,
+      "game_date": "2025-09-07 16:25",
+      "away_team": "Detroit",
+      "home_team": "Green Bay",
+      "away_odds": "2",
+      "home_odds": "-2",
+      "over_under": "47.5",
+      "matchup_link": "https://www.oddsshark.com/nfl/detroit-green-bay-odds-september-7-2025-2396584"
+    },
+    {
+      "id": "Baltimore_Buffalo_2025-09-07 20:20",
+      "week": 1,
+      "game_date": "2025-09-07 20:20",
+      "away_team": "Baltimore",
+      "home_team": "Buffalo",
+      "away_odds": "-1",
+      "home_odds": "1",
+      "over_under": "50.5",
+      "matchup_link": "https://www.oddsshark.com/nfl/baltimore-buffalo-odds-september-7-2025-2396589"
+    },
+    {
+      "id": "Minnesota_Chicago_2025-09-08 20:15",
+      "week": 1,
+      "game_date": "2025-09-08 20:15",
+      "away_team": "Minnesota",
+      "home_team": "Chicago",
+      "away_odds": "-1.5",
+      "home_odds": "1.5",
+      "over_under": "43.5",
+      "matchup_link": "https://www.oddsshark.com/nfl/minnesota-chicago-odds-september-8-2025-2397189"
+    }
+  ]
 }

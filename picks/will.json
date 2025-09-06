@@ -9,7 +9,71 @@
     "BUF_LAR_2025-09-08 13:00": {
       "spread": "Buffalo",
       "total": "over"
+    },
+    "Dallas_Philadelphia_2025-09-04 20:20": {
+      "spread": "Dallas",
+      "total": "under"
+    },
+    "Kansas City_LA Chargers_2025-09-05 20:00": {
+      "spread": "LA Chargers",
+      "total": "over"
+    },
+    "Arizona_New Orleans_2025-09-07 13:00": {
+      "spread": "Arizona",
+      "total": "over"
+    },
+    "Las Vegas_New England_2025-09-07 13:00": {
+      "spread": "Las Vegas",
+      "total": "under"
+    },
+    "Pittsburgh_NY Jets_2025-09-07 13:00": {
+      "spread": "Pittsburgh",
+      "total": "over"
+    },
+    "Tampa Bay_Atlanta_2025-09-07 13:00": {
+      "spread": "Atlanta",
+      "total": "over"
+    },
+    "Miami_Indianapolis_2025-09-07 13:00": {
+      "spread": "Miami",
+      "total": "over"
+    },
+    "NY Giants_Washington_2025-09-07 13:00": {
+      "spread": "NY Giants",
+      "total": "under"
+    },
+    "Carolina_Jacksonville_2025-09-07 13:00": {
+      "spread": "Jacksonville",
+      "total": "over"
+    },
+    "Cincinnati_Cleveland_2025-09-07 13:00": {
+      "spread": "Cincinnati",
+      "total": "under"
+    },
+    "San Francisco_Seattle_2025-09-07 16:05": {
+      "spread": "San Francisco",
+      "total": "over"
+    },
+    "Tennessee_Denver_2025-09-07 16:05": {
+      "spread": "Tennessee",
+      "total": "over"
+    },
+    "Houston_LA Rams_2025-09-07 16:25": {
+      "spread": "LA Rams",
+      "total": "over"
+    },
+    "Detroit_Green Bay_2025-09-07 16:25": {
+      "spread": "Detroit",
+      "total": "over"
+    },
+    "Baltimore_Buffalo_2025-09-07 20:20": {
+      "spread": "Buffalo",
+      "total": "under"
+    },
+    "Minnesota_Chicago_2025-09-08 20:15": {
+      "spread": "Minnesota",
+      "total": "over"
     }
   },
-  "saved_at": "2025-08-23T15:11:48.458Z"
+  "saved_at": "2025-09-06T18:26:24.150Z"
 }

@@ -31,7 +31,7 @@
       "total": "under"
     },
     "Cleveland_Pittsburgh_2025-10-12 13:00": {
-      "spread": "Pittsburgh",
+      "spread": "Cleveland",
       "total": "under"
     },
     "New England_New Orleans_2025-10-12 13:00": {
@@ -59,9 +59,9 @@
       "total": "under"
     },
     "Chicago_Washington_2025-10-13 20:15": {
-      "spread": "Chicago",
+      "spread": "Washington",
       "total": "over"
     }
   },
-  "saved_at": "2025-10-11T23:44:43.314Z"
+  "saved_at": "2025-10-12T13:25:53.782Z"
 }

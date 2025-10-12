@@ -1,55 +1,63 @@
 {
   "player": "teddy",
-  "week": 5,
+  "week": 6,
   "picks": {
-    "NY Giants_New Orleans_2025-10-05 13:00": {
-      "spread": "NY Giants",
-      "total": "under"
-    },
-    "Houston_Baltimore_2025-10-05 13:00": {
-      "spread": "Baltimore",
-      "total": "under"
-    },
-    "Miami_Carolina_2025-10-05 13:00": {
-      "spread": "Miami",
-      "total": "under"
-    },
-    "Las Vegas_Indianapolis_2025-10-05 13:00": {
-      "spread": "Indianapolis",
-      "total": "under"
-    },
-    "Dallas_NY Jets_2025-10-05 13:00": {
-      "spread": "Dallas",
-      "total": "over"
-    },
-    "Denver_Philadelphia_2025-10-05 13:00": {
+    "Denver_NY Jets_2025-10-12 09:30": {
       "spread": "Denver",
       "total": "under"
     },
-    "Tennessee_Arizona_2025-10-05 16:05": {
-      "spread": "Tennessee",
+    "LA Rams_Baltimore_2025-10-12 13:00": {
+      "spread": "Baltimore",
+      "total": "over"
+    },
+    "Dallas_Carolina_2025-10-12 13:00": {
+      "spread": "Dallas",
+      "total": "over"
+    },
+    "Arizona_Indianapolis_2025-10-12 13:00": {
+      "spread": "Indianapolis",
+      "total": "over"
+    },
+    "Seattle_Jacksonville_2025-10-12 13:00": {
+      "spread": "Jacksonville",
       "total": "under"
     },
-    "Tampa Bay_Seattle_2025-10-05 16:05": {
-      "spread": "Tampa Bay",
-      "total": "under"
-    },
-    "Washington_LA Chargers_2025-10-05 16:25": {
+    "LA Chargers_Miami_2025-10-12 13:00": {
       "spread": "LA Chargers",
       "total": "under"
     },
-    "Detroit_Cincinnati_2025-10-05 16:25": {
-      "spread": "Detroit",
+    "Cleveland_Pittsburgh_2025-10-12 13:00": {
+      "spread": "Pittsburgh",
       "total": "under"
     },
-    "New England_Buffalo_2025-10-05 20:20": {
+    "New England_New Orleans_2025-10-12 13:00": {
       "spread": "New England",
       "total": "under"
     },
-    "Kansas City_Jacksonville_2025-10-06 20:15": {
-      "spread": "Kansas City",
+    "Tennessee_Las Vegas_2025-10-12 16:05": {
+      "spread": "Tennessee",
+      "total": "over"
+    },
+    "San Francisco_Tampa Bay_2025-10-12 16:25": {
+      "spread": "Tampa Bay",
+      "total": "over"
+    },
+    "Cincinnati_Green Bay_2025-10-12 16:25": {
+      "spread": "Cincinnati",
+      "total": "under"
+    },
+    "Detroit_Kansas City_2025-10-12 20:20": {
+      "spread": "Detroit",
+      "total": "under"
+    },
+    "Buffalo_Atlanta_2025-10-13 19:15": {
+      "spread": "Buffalo",
+      "total": "under"
+    },
+    "Chicago_Washington_2025-10-13 20:15": {
+      "spread": "Chicago",
       "total": "under"
     }
   },
-  "saved_at": "2025-10-05T17:04:19.794Z"
+  "saved_at": "2025-10-12T12:57:13.887Z"
 }

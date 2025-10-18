@@ -20,7 +20,7 @@
     },
     "Philadelphia_Minnesota_2025-10-19 13:00": {
       "spread": "Philadelphia",
-      "total": "over"
+      "total": "under"
     },
     "New England_Tennessee_2025-10-19 13:00": {
       "spread": "New England",
@@ -28,7 +28,7 @@
     },
     "Miami_Cleveland_2025-10-19 13:00": {
       "spread": "Cleveland",
-      "total": "over"
+      "total": "under"
     },
     "Carolina_NY Jets_2025-10-19 13:00": {
       "spread": "NY Jets",
@@ -39,7 +39,7 @@
       "total": "over"
     },
     "NY Giants_Denver_2025-10-19 16:05": {
-      "spread": "NY Giants",
+      "spread": "Denver",
       "total": "under"
     },
     "Green Bay_Arizona_2025-10-19 16:25": {
@@ -55,13 +55,13 @@
       "total": "over"
     },
     "Tampa Bay_Detroit_2025-10-20 19:00": {
-      "spread": "Detroit",
-      "total": "under"
+      "spread": "Tampa Bay",
+      "total": "over"
     },
     "Houston_Seattle_2025-10-20 22:00": {
       "spread": "Seattle",
       "total": "over"
     }
   },
-  "saved_at": "2025-10-18T14:25:55.858Z"
+  "saved_at": "2025-10-18T15:50:13.568Z"
 }

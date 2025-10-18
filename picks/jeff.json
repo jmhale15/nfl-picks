@@ -52,7 +52,7 @@
     },
     "Atlanta_San Francisco_2025-10-19 20:20": {
       "spread": "San Francisco",
-      "total": "over"
+      "total": "under"
     },
     "Tampa Bay_Detroit_2025-10-20 19:00": {
       "spread": "Tampa Bay",
@@ -63,5 +63,5 @@
       "total": "over"
     }
   },
-  "saved_at": "2025-10-18T15:50:13.568Z"
+  "saved_at": "2025-10-18T15:51:38.927Z"
 }

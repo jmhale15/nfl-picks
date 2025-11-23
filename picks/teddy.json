@@ -1,63 +1,59 @@
 {
   "player": "teddy",
-  "week": 11,
+  "week": 12,
   "picks": {
-    "Washington_Miami_2025-11-16 09:30": {
-      "spread": "Miami",
-      "total": "under"
-    },
-    "Chicago_Minnesota_2025-11-16 13:00": {
+    "Pittsburgh_Chicago_2025-11-23 13:00": {
       "spread": "Chicago",
-      "total": "under"
-    },
-    "Houston_Tennessee_2025-11-16 13:00": {
-      "spread": "Houston",
-      "total": "under"
-    },
-    "Carolina_Atlanta_2025-11-16 13:00": {
-      "spread": "Carolina",
       "total": "over"
     },
-    "Tampa Bay_Buffalo_2025-11-16 13:00": {
-      "spread": "Buffalo",
+    "Minnesota_Green Bay_2025-11-23 13:00": {
+      "spread": "Minnesota",
+      "total": "over"
+    },
+    "Indianapolis_Kansas City_2025-11-23 13:00": {
+      "spread": "Kansas City",
+      "total": "over"
+    },
+    "Seattle_Tennessee_2025-11-23 13:00": {
+      "spread": "Seattle",
       "total": "under"
     },
-    "LA Chargers_Jacksonville_2025-11-16 13:00": {
-      "spread": "LA Chargers",
+    "NY Jets_Baltimore_2025-11-23 13:00": {
+      "spread": "NY Jets",
+      "total": "over"
+    },
+    "New England_Cincinnati_2025-11-23 13:00": {
+      "spread": "New England",
       "total": "under"
     },
-    "Green Bay_NY Giants_2025-11-16 13:00": {
-      "spread": "Green Bay",
+    "NY Giants_Detroit_2025-11-23 13:00": {
+      "spread": "NY Giants",
       "total": "under"
     },
-    "Cincinnati_Pittsburgh_2025-11-16 13:00": {
-      "spread": "Cincinnati",
+    "Cleveland_Las Vegas_2025-11-23 16:05": {
+      "spread": "Las Vegas",
+      "total": "over"
+    },
+    "Jacksonville_Arizona_2025-11-23 16:05": {
+      "spread": "Jacksonville",
       "total": "under"
     },
-    "Seattle_LA Rams_2025-11-16 16:05": {
+    "Philadelphia_Dallas_2025-11-23 16:25": {
+      "spread": "Dallas",
+      "total": "over"
+    },
+    "Atlanta_New Orleans_2025-11-23 16:25": {
+      "spread": "Atlanta",
+      "total": "over"
+    },
+    "Tampa Bay_LA Rams_2025-11-23 20:20": {
       "spread": "LA Rams",
       "total": "over"
     },
-    "San Francisco_Arizona_2025-11-16 16:05": {
+    "Carolina_San Francisco_2025-11-24 20:15": {
       "spread": "San Francisco",
-      "total": "under"
-    },
-    "Kansas City_Denver_2025-11-16 16:25": {
-      "spread": "Kansas City",
-      "total": "under"
-    },
-    "Baltimore_Cleveland_2025-11-16 16:25": {
-      "spread": "Baltimore",
-      "total": "under"
-    },
-    "Detroit_Philadelphia_2025-11-16 20:20": {
-      "spread": "Detroit",
-      "total": "over"
-    },
-    "Dallas_Las Vegas_2025-11-17 20:15": {
-      "spread": "Dallas",
       "total": "under"
     }
   },
-  "saved_at": "2025-11-15T20:34:21.878Z"
+  "saved_at": "2025-11-23T14:08:45.424Z"
 }

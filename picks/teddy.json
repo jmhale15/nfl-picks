@@ -1,59 +1,55 @@
 {
   "player": "teddy",
-  "week": 12,
+  "week": 13,
   "picks": {
-    "Pittsburgh_Chicago_2025-11-23 13:00": {
-      "spread": "Chicago",
-      "total": "over"
-    },
-    "Minnesota_Green Bay_2025-11-23 13:00": {
-      "spread": "Minnesota",
-      "total": "over"
-    },
-    "Indianapolis_Kansas City_2025-11-23 13:00": {
-      "spread": "Kansas City",
-      "total": "over"
-    },
-    "Seattle_Tennessee_2025-11-23 13:00": {
-      "spread": "Seattle",
-      "total": "under"
-    },
-    "NY Jets_Baltimore_2025-11-23 13:00": {
-      "spread": "NY Jets",
-      "total": "over"
-    },
-    "New England_Cincinnati_2025-11-23 13:00": {
-      "spread": "New England",
-      "total": "under"
-    },
-    "NY Giants_Detroit_2025-11-23 13:00": {
-      "spread": "NY Giants",
-      "total": "under"
-    },
-    "Cleveland_Las Vegas_2025-11-23 16:05": {
-      "spread": "Las Vegas",
-      "total": "over"
-    },
-    "Jacksonville_Arizona_2025-11-23 16:05": {
+    "Jacksonville_Tennessee_2025-11-30 13:00": {
       "spread": "Jacksonville",
       "total": "under"
     },
-    "Philadelphia_Dallas_2025-11-23 16:25": {
-      "spread": "Dallas",
-      "total": "over"
-    },
-    "Atlanta_New Orleans_2025-11-23 16:25": {
-      "spread": "Atlanta",
-      "total": "over"
-    },
-    "Tampa Bay_LA Rams_2025-11-23 20:20": {
+    "LA Rams_Carolina_2025-11-30 13:00": {
       "spread": "LA Rams",
-      "total": "over"
+      "total": "under"
     },
-    "Carolina_San Francisco_2025-11-24 20:15": {
+    "San Francisco_Cleveland_2025-11-30 13:00": {
       "spread": "San Francisco",
       "total": "under"
+    },
+    "Houston_Indianapolis_2025-11-30 13:00": {
+      "spread": "Houston",
+      "total": "under"
+    },
+    "New Orleans_Miami_2025-11-30 13:00": {
+      "spread": "New Orleans",
+      "total": "over"
+    },
+    "Atlanta_NY Jets_2025-11-30 13:00": {
+      "spread": "NY Jets",
+      "total": "over"
+    },
+    "Arizona_Tampa Bay_2025-11-30 13:00": {
+      "spread": "Tampa Bay",
+      "total": "over"
+    },
+    "Minnesota_Seattle_2025-11-30 16:05": {
+      "spread": "Seattle",
+      "total": "under"
+    },
+    "Las Vegas_LA Chargers_2025-11-30 16:25": {
+      "spread": "LA Chargers",
+      "total": "under"
+    },
+    "Buffalo_Pittsburgh_2025-11-30 16:25": {
+      "spread": "Buffalo",
+      "total": "under"
+    },
+    "Denver_Washington_2025-11-30 20:20": {
+      "spread": "Denver",
+      "total": "under"
+    },
+    "NY Giants_New England_2025-12-01 20:15": {
+      "spread": "NY Giants",
+      "total": "over"
     }
   },
-  "saved_at": "2025-11-23T14:08:45.424Z"
+  "saved_at": "2025-11-30T05:55:16.172Z"
 }
